@@ -1,63 +1,30 @@
+// Copyright 2018 The Chromium Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+// You can read about packages here: https://flutter.io/using-packages/
 import 'package:flutter/material.dart';
 
+// TODO: Import the CategoryRoute widget
+import 'package:hello_rectangle/category_route.dart';
+
+/// The function that is called when main.dart is run.
 void main() {
-  runApp(
-    MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Hello Rectangle',
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('Hello Rectangle'),
-        ),
-        body: Category(Icons.favorite, Colors.red, 'Hello World'),
-      ),
-    ),
-  );
+  runApp(UnitConverterApp());
 }
 
-class Category extends StatelessWidget {
-  final IconData iconData;
-  final Color iconColor;
-  final String text;
-
-  Category(this.iconData, this.iconColor, this.text);
-
+/// This widget is the root of our application.
+///
+/// The first screen we see is a list [Categories].
+class UnitConverterApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-        child: Container(
-            height: 100,
-            padding: EdgeInsets.all(8.0),
-            decoration: BoxDecoration(
-//                color: Colors.limeAccent,
-                borderRadius: BorderRadius.circular(50.0)),
-            child: Row(children: [
-              Container(
-                  padding: EdgeInsets.all(16),
-                  child: Icon(this.iconData, size: 60, color: this.iconColor)),
-              Center(child: Text(this.text, style: TextStyle(fontSize: 24)))
-            ])),
-        onTap: () { print('I was tapped!'); },
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'Unit Converter',
+      // TODO: Instead of pointing to exactly 1 Category widget,
+      // our home should now point to an instance of the CategoryRoute widget.
+      home: CategoryRoute(),
     );
   }
 }
-
-//class HelloRectangle extends StatelessWidget {
-//  @override
-//  Widget build(BuildContext context) {
-//    return Center(
-//      child: Container(
-//        color: Colors.greenAccent,
-//        height: 400.0,
-//        width: 300.0,
-//        child: Center(
-//          child: Text(
-//            'Hello!',
-//            style: TextStyle(fontSize: 40.0),
-//            textAlign: TextAlign.center,
-//          ),
-//        ),
-//      ),
-//    );
-//  }
-//}
