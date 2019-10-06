@@ -16,9 +16,33 @@ final _backgroundColor = Colors.green[100];
 ///
 /// While it is named CategoryRoute, a more apt name would be CategoryScreen,
 /// because it is responsible for the UI at the route's destination.
-class CategoryRoute extends StatelessWidget {
-  const CategoryRoute();
+// TODO: Make CategoryRoute a StatefulWidget
+class CategoryRoute extends StatefulWidget {
+  CategoryRoute();
+  @override
+  createState() => _CategoryRouteState();
+}
 
+class _CategoryRouteState extends State<CategoryRoute> {
+  final categories = <Category>[];
+
+  _CategoryRouteState();
+
+  @override
+  void initState() {
+    super.initState();
+
+    for (var i = 0; i < _categoryNames.length; i++) {
+      categories.add(Category(
+        name: _categoryNames[i],
+        color: _baseColors[i],
+        iconLocation: Icons.cake,
+        units: _retrieveUnitList(_categoryNames[i]),
+      ));
+    }
+  }
+
+  // TODO: Create State object for the CategoryRoute
   static const _categoryNames = <String>[
     'Length',
     'Area',
@@ -64,16 +88,11 @@ class CategoryRoute extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final categories = <Category>[];
-
-    for (var i = 0; i < _categoryNames.length; i++) {
-      categories.add(Category(
-        name: _categoryNames[i],
-        color: _baseColors[i],
-        iconLocation: Icons.cake,
-        units: _retrieveUnitList(_categoryNames[i]),
-      ));
-    }
+    // TODO: Instead of re-creating a list of Categories in every build(),
+    // save this as a variable inside the State object and create
+    // the list at initialization (in initState()).
+    // This way, you also don't have to pass in the list of categories to
+    // _buildCategoryWidgets()
 
     final listView = Container(
       color: _backgroundColor,
